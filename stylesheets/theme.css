@@ -1,0 +1,15 @@
+:root {
+  /* Your variable overrides */
+  --primary: #a18c6b;
+  --body-bg: #fafafa;
+  --body-color: #121212;
+}
+
+body {
+  color: var(--body-color);
+  background-color: var(--body-bg);
+}
+
+a {
+  color: var(--primary);
+}
