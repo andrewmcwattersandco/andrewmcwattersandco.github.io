@@ -3,6 +3,7 @@
   --primary: #a18c6b;
   --body-bg: #fafafa;
   --body-color: #121212;
+  --link-hover-color: #75644a;
 }
 
 body {
@@ -12,4 +13,8 @@ body {
 
 a {
   color: var(--primary);
+}
+
+a:hover {
+  color: var(--link-hover-color);
 }
