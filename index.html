@@ -25,11 +25,19 @@
       <div class="container" style="margin-top: 1in; margin-bottom: 1in;">
         <p>
           <a href="/">
-            <img
-              src="images/logo.r41@2x.png"
-              alt="Andrew McWatters & Co."
-              height="25"
-            />
+            <picture>
+              <source
+                media="(max-width: 575px)"
+                srcset="images/logo.r40@2x.png 594w"
+                sizes="297px"
+              />
+              <source
+                media="(min-width: 576px)"
+                srcset="images/logo.r41@2x.png 919w"
+                sizes="495px"
+              />
+              <img src="images/logo.r41@2x.png" alt="Andrew McWatters & Co." />
+            </picture>
           </a>
         </p>
       </div>
