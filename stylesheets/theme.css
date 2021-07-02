@@ -20,6 +20,10 @@ a:hover {
   color: var(--link-hover-color);
 }
 
+.nav-link {
+  color: var(--primary);
+}
+
 .nav-link.active {
   opacity: .56;
 }
