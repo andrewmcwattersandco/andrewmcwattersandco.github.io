@@ -24,6 +24,11 @@ a:hover {
   color: var(--primary);
 }
 
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--link-hover-color);
+}
+
 .nav-link.active {
   opacity: .56;
 }
