@@ -9,6 +9,9 @@
 body {
   color: var(--body-color);
   background-color: var(--body-bg);
+  /* Display the scrollbar, so that `document.body.clientWidth` doesn't pop
+     between pages. */
+  overflow-y: scroll;
 }
 
 a {
@@ -18,4 +21,17 @@ a {
 
 a:hover {
   color: var(--link-hover-color);
+}
+
+.nav-link {
+  color: var(--primary);
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--link-hover-color);
+}
+
+.nav-link.active {
+  opacity: 0.56;
 }
