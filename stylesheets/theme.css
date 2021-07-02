@@ -9,6 +9,9 @@
 body {
   color: var(--body-color);
   background-color: var(--body-bg);
+  /* Display the scrollbar, so that `document.body.clientWidth` doesn't pop
+     between pages. */
+  overflow-y: scroll;
 }
 
 a {
