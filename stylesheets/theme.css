@@ -37,3 +37,7 @@ a:hover {
 .nav-link.active {
   opacity: 0.56;
 }
+
+footer {
+  font-size: 12px;
+}
