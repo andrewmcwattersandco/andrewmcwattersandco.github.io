@@ -4,8 +4,8 @@
   --body-bg: #fafafa;
   --body-color: #121212;
   --link-hover-color: #75644a;
-  --card-spacer-y: 0.5in;
-  --card-spacer-x: 0.5in;
+  --card-spacer-y: 30px;
+  --card-spacer-x: 30px;
   --card-border-width: 0;
   --card-border-radius: 18px;
 }
