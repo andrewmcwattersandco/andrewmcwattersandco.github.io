@@ -26,6 +26,7 @@ a:hover {
 
 .nav-link {
   color: var(--primary);
+  font-size: 14px;
 }
 
 .nav-link:hover,
