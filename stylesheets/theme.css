@@ -5,6 +5,7 @@
   --body-color: #121212;
   --link-hover-color: #75644a;
   --input-border-radius: 12px;
+  --form-select-border-radius: var(--input-border-radius);
   --card-spacer-y: 30px;
   --card-spacer-x: 30px;
   --card-border-width: 0;
@@ -31,6 +32,10 @@ a:hover {
 
 .form-control {
   border-radius: var(--input-border-radius);
+}
+
+.form-select {
+  border-radius: var(--form-select-border-radius);
 }
 
 .nav-link {
