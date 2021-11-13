@@ -1,11 +1,13 @@
 :root {
   /* Default variable overrides */
+  --gray-200: #e9ecef;
   --primary: #a18c6b;
   --body-bg: #fafafa;
   --body-color: #121212;
   --link-hover-color: #75644a;
   --btn-border-radius: 12px;
   --input-border-radius: 12px;
+  --form-select-disabled-bg: var(--gray-200);
   --form-select-border-radius: var(--input-border-radius);
   --card-spacer-y: 30px;
   --card-spacer-x: 30px;
@@ -37,6 +39,11 @@ a:hover {
 
 .form-select {
   border-radius: var(--form-select-border-radius);
+}
+
+.form-select.disabled {
+  background-color: var(--form-select-disabled-bg);
+  pointer-events: none;
 }
 
 .btn {
