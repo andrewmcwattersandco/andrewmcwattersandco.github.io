@@ -17,6 +17,7 @@
   --card-spacer-x: 30px;
   --card-border-width: 0;
   --card-border-radius: 18px;
+  --modal-content-border-width: 0;
 }
 
 body {
@@ -82,6 +83,10 @@ a:hover {
 
 .card-body {
   padding: var(--card-spacer-y) var(--card-spacer-x);
+}
+
+.modal-content {
+  border-width: var(--modal-content-border-width);
 }
 
 footer {
