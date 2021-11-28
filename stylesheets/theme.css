@@ -18,6 +18,7 @@
   --card-border-width: 0;
   --card-border-radius: 18px;
   --modal-content-border-width: 0;
+  --modal-content-border-radius: 18px;
 }
 
 body {
@@ -87,6 +88,7 @@ a:hover {
 
 .modal-content {
   border-width: var(--modal-content-border-width);
+  border-radius: var(--modal-content-border-radius);
 }
 
 footer {
