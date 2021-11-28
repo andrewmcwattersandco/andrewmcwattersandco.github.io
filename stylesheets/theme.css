@@ -5,6 +5,7 @@
   --bs-body-bg: #fafafa;
   --bs-body-color: #121212;
   --link-color: var(--bs-primary);
+  --link-decoration: none;
   --link-hover-color: #75644a;
   --btn-link-color: var(--link-color);
   --btn-link-hover-color: var(--link-hover-color);
@@ -27,7 +28,7 @@ body {
 
 a {
   color: var(--bs-primary);
-  text-decoration: none;
+  text-decoration: var(--link-decoration);
 }
 
 a:hover {
@@ -53,6 +54,7 @@ a:hover {
 
 .btn-link {
   color: var(--btn-link-color);
+  text-decoration: var(--link-decoration);
 }
 
 .btn-link:hover {
