@@ -4,7 +4,9 @@
   --bs-primary: #a18c6b;
   --bs-body-bg: #fafafa;
   --bs-body-color: #121212;
+  --link-color: var(--bs-primary);
   --link-hover-color: #75644a;
+  --btn-link-color: var(--link-color);
   --btn-border-radius: 12px;
   --input-border-radius: 12px;
   --form-select-disabled-bg: var(--gray-200);
@@ -46,6 +48,10 @@ a:hover {
 
 .btn {
   border-radius: var(--btn-border-radius);
+}
+
+.btn-link {
+  color: var(--btn-link-color);
 }
 
 .nav-link {
