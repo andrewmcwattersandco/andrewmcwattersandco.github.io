@@ -1,18 +1,37 @@
 :root {
   /* Default variable overrides */
-  --primary: #a18c6b;
-  --body-bg: #fafafa;
-  --body-color: #121212;
+  --gray-200: #e9ecef; /* ln:11 */
+  --bs-primary: #a18c6b; /* ln:70 */
+  --spacer: 1rem; /* ln:375 */
+  --bs-body-bg: #fafafa; /* ln:404 */
+  --bs-body-color: #121212; /* ln:405 */
+  --link-color: var(--bs-primary); /* ln:445 */
+  --link-decoration: none;
   --link-hover-color: #75644a;
+  --btn-link-color: var(--link-color);
+  --btn-link-hover-color: var(--link-hover-color);
+  --btn-border-radius: 12px;
+  --input-border-radius: 12px;
+  --form-select-disabled-bg: var(--gray-200);
+  --form-select-border-radius: var(--input-border-radius);
   --card-spacer-y: 30px;
   --card-spacer-x: 30px;
   --card-border-width: 0;
   --card-border-radius: 18px;
+  --modal-inner-padding: 28px; /* ln:1403 */
+  --modal-content-border-width: 0; /* ln:1415 */
+  --modal-content-border-radius: 18px;
+  --modal-header-border-width: 0;
+  --modal-footer-border-width: 0;
+  --modal-header-padding-y: var(--modal-inner-padding);
+  --modal-header-padding-x: var(--modal-inner-padding);
+  --modal-header-padding: var(--modal-header-padding-y) var(--modal-header-padding-x);
+  --btn-close-width: 32px; /* ln:1597 */
+  --btn-close-height: var(--btn-close-width); /* ln:1598 */
+  --btn-close-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' fill='currentColor' class='bi bi-x-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/></svg>");
 }
 
 body {
-  color: var(--body-color);
-  background-color: var(--body-bg);
   /* Display the scrollbar, so that `document.body.clientWidth` doesn't pop
      between pages. */
   overflow-y: scroll;
@@ -20,16 +39,42 @@ body {
 }
 
 a {
-  color: var(--primary);
-  text-decoration: none;
+  color: var(--bs-primary);
+  text-decoration: var(--link-decoration);
 }
 
 a:hover {
   color: var(--link-hover-color);
 }
 
+.form-control {
+  border-radius: var(--input-border-radius);
+}
+
+.form-select {
+  border-radius: var(--form-select-border-radius);
+}
+
+.form-select.disabled {
+  background-color: var(--form-select-disabled-bg);
+  pointer-events: none;
+}
+
+.btn {
+  border-radius: var(--btn-border-radius);
+}
+
+.btn-link {
+  color: var(--btn-link-color);
+  text-decoration: var(--link-decoration);
+}
+
+.btn-link:hover {
+  color: var(--btn-link-hover-color);
+}
+
 .nav-link {
-  color: var(--primary);
+  color: var(--bs-primary);
   font-size: 14px;
 }
 
@@ -49,6 +94,35 @@ a:hover {
 
 .card-body {
   padding: var(--card-spacer-y) var(--card-spacer-x);
+}
+
+.btn-close {
+  width: var(--btn-close-width);
+  height: var(--btn-close-height);
+  background: transparent var(--btn-close-bg) center / var(--btn-close-width) auto no-repeat;
+}
+
+.modal-content {
+  border-width: var(--modal-content-border-width);
+  border-radius: var(--modal-content-border-radius);
+}
+
+.modal-header {
+  padding: var(--modal-header-padding);
+  border-width: var(--modal-header-border-width);
+}
+
+.modal-header .btn-close {
+  padding: calc(var(--modal-header-padding-y) * .5) calc(var(--modal-header-padding-x) * .5);
+  margin: calc(var(--modal-header-padding-y) * -.5) auto calc(var(--modal-header-padding-x) * -.5) calc(var(--modal-header-padding-y) * -.5);
+}
+
+.modal-body {
+  padding: var(--modal-inner-padding);
+}
+
+.modal-footer {
+  border-width: var(--modal-footer-border-width);
 }
 
 footer {
