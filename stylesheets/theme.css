@@ -1,7 +1,12 @@
+.text-new {
+  color: var(--bs-new);
+}
+
 :root {
   /* Default variable overrides */
   --gray-200: #e9ecef; /* ln:11 */
   --bs-primary: #a18c6b; /* ln:70 */
+  --bs-new: #bf4800;
   --spacer: 1rem; /* ln:375 */
   --bs-body-bg: #fafafa; /* ln:404 */
   --bs-body-color: #121212; /* ln:405 */
