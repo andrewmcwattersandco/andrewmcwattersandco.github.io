@@ -65,6 +65,10 @@ a:hover {
   pointer-events: none;
 }
 
+.input-group-text {
+  border-radius: var(--input-border-radius);
+}
+
 .btn {
   border-radius: var(--btn-border-radius);
 }
