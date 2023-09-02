@@ -83,11 +83,6 @@ a:hover {
   text-decoration: var(--link-decoration);
 }
 
-.nav-link:hover,
-.nav-link:focus {
-  color: var(--link-hover-color);
-}
-
 .nav-link.active {
   opacity: 0.56;
 }
