@@ -83,10 +83,6 @@ a:hover {
   text-decoration: var(--link-decoration);
 }
 
-.nav-link.active {
-  opacity: 0.56;
-}
-
 .card {
   border-width: var(--card-border-width);
   border-radius: var(--card-border-radius);
