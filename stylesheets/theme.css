@@ -5,14 +5,14 @@
 :root {
   /* Default variable overrides */
   --gray-200: #e9ecef; /* ln:11 */
-  --bs-primary: #a18c6b; /* ln:70 */
+  --bs-primary: #06c; /* ln:70 */
   --bs-new: #bf4800;
   --spacer: 1rem; /* ln:375 */
   --bs-body-bg: #fafafa; /* ln:404 */
   --bs-body-color: #121212; /* ln:405 */
   --link-color: var(--bs-primary); /* ln:445 */
   --link-decoration: none;
-  --link-hover-color: #75644a;
+  --link-hover-color: #06c;
   --btn-link-color: var(--link-color);
   --btn-link-hover-color: var(--link-hover-color);
   --btn-border-radius: 12px;
