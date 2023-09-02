@@ -11,7 +11,7 @@
   --bs-body-bg: #fafafa; /* ln:404 */
   --bs-body-color: #121212; /* ln:405 */
   --link-color: var(--bs-primary); /* ln:445 */
-  --link-decoration: none;
+  --link-decoration: underline;
   --link-hover-color: #06c;
   --btn-link-color: var(--link-color);
   --btn-link-hover-color: var(--link-hover-color);
@@ -45,11 +45,12 @@ body {
 
 a {
   color: var(--bs-primary);
-  text-decoration: var(--link-decoration);
+  text-decoration: none;
 }
 
 a:hover {
   color: var(--link-hover-color);
+  text-decoration: var(--link-decoration);
 }
 
 .form-control {
@@ -75,11 +76,12 @@ a:hover {
 
 .btn-link {
   color: var(--btn-link-color);
-  text-decoration: var(--link-decoration);
+  text-decoration: none;
 }
 
 .btn-link:hover {
   color: var(--btn-link-hover-color);
+  text-decoration: var(--link-decoration);
 }
 
 .nav-link {
