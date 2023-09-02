@@ -40,7 +40,6 @@ body {
   /* Display the scrollbar, so that `document.body.clientWidth` doesn't pop
      between pages. */
   overflow-y: scroll;
-  -webkit-font-smoothing: antialiased;
 }
 
 a {
