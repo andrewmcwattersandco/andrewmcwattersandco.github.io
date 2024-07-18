@@ -121,6 +121,10 @@ a:hover {
   border-width: var(--modal-footer-border-width);
 }
 
+.spinner-border-sm {
+  --bs-spinner-border-width: .1em;
+}
+
 footer {
   font-size: 12px;
 }
