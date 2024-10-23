@@ -1,0 +1,34 @@
+input:is([type="button"], [type="submit"], [type="reset"]), input[type="file"]::file-selector-button, button {
+  color: #F5F5F7;
+}
+
+:root {
+  /* Default variable overrides */
+  --bs-body-bg: #111; /* ln:404 */
+  --bs-body-color: #F5F5F7; /* ln:405 */
+  --bs-border-color: #424245;
+  --bs-tertiary-bg: #424245;
+  --bs-tertiary-bg-rgb: 66,66,69;
+}
+
+.card {
+  --bs-card-bg: #141414;
+}
+
+.nav {
+  --bs-nav-link-color: #F5F5F7;
+  --bs-nav-link-hover-color: #2997FF;
+}
+
+.form-control {
+  border-color: #424245;
+}
+
+footer {
+  color: #6E6E73;
+  background-color: #1d1d1f;
+}
+
+footer .text-muted {
+  /* HACK: */ color: inherit!important;
+}
