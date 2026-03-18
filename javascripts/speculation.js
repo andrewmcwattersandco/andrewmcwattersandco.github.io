@@ -152,7 +152,11 @@
   }
 
   function reexecuteScripts(body) {
+    const existingSrcs = new Set(
+      [...document.scripts].map((s) => s.src).filter(Boolean),
+    );
     for (const script of body.querySelectorAll("script")) {
+      if (script.src && existingSrcs.has(script.src)) continue;
       const replacement = document.createElement("script");
       for (const attr of script.attributes)
         replacement.setAttribute(attr.name, attr.value);
