@@ -51,6 +51,14 @@
   async function fetchPage(url) {
     const now = Date.now();
     const cached = cache.get(url);
+    console.log(
+      "[speculation] fetchPage",
+      url,
+      "cache hit:",
+      !!cached,
+      "keys:",
+      [...cache.keys()],
+    );
 
     if (cached && now < cached.expires) return cached;
 
@@ -79,7 +87,7 @@
     const entry = { html, url: response.url, expires: now + ttl * 1000 };
     if (ttl > 0) {
       cache.set(url, entry);
-      console.log("[speculation] cached", url, "->", entry.url);
+      console.log("[speculation] cached", url, "html length:", html.length);
     }
 
     return entry;
