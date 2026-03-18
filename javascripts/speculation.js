@@ -49,34 +49,7 @@
     const now = Date.now();
     const cached = cache.get(url);
 
-    if (cached && now < cached.expires) {
-      const revalId = Symbol();
-      cached.revalId = revalId;
-      fetch(url, { credentials: "same-origin" })
-        .then(async (response) => {
-          if (!response.ok) return;
-          const contentType = response.headers.get("Content-Type");
-          if (!contentType?.startsWith("text/html")) return;
-          const ttl = parseCacheControl(response.headers.get("Cache-Control"));
-          if (ttl === 0) {
-            cache.delete(url);
-            cache.delete(response.url);
-            return;
-          }
-          const html = await response.text();
-          const current = cache.get(url) ?? cache.get(response.url);
-          if (current?.revalId !== revalId) return;
-          const entry = {
-            html,
-            url: response.url,
-            expires: Date.now() + ttl * 1000,
-          };
-          cache.set(url, entry);
-          if (response.url !== url) cache.set(response.url, entry);
-        })
-        .catch(() => {});
-      return cached;
-    }
+    if (cached && now < cached.expires) return cached;
 
     if (preloadController && url !== currentFetchUrl) preloadController.abort();
     preloadController = new AbortController();
