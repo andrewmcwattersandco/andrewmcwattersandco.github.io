@@ -77,7 +77,10 @@
     const html = await response.text();
 
     const entry = { html, url: response.url, expires: now + ttl * 1000 };
-    if (ttl > 0) cache.set(url, entry);
+    if (ttl > 0) {
+      cache.set(url, entry);
+      if (response.url !== url) cache.set(response.url, entry);
+    }
 
     return entry;
   }
@@ -220,9 +223,9 @@
         location.href = url;
         return;
       }
-      currentUrl = url;
       history.replaceState({ scrollY }, "", location.href);
-      history.pushState({ scrollY: 0 }, "", url);
+      currentUrl = entry.url;
+      history.pushState({ scrollY: 0 }, "", entry.url);
       swapPage(entry, 0);
     });
   });
