@@ -230,11 +230,15 @@
 
   // Popstate
   addEventListener("popstate", (e) => {
+    console.log("[speculation] popstate", location.href, "cache keys:", [
+      ...cache.keys(),
+    ]);
     // Save current scroll position before navigating away
     history.replaceState({ scrollY }, "", currentUrl);
     currentUrl = location.href;
     const id = ++navId;
     fetchPage(location.href).then((entry) => {
+      console.log("[speculation] popstate entry", entry);
       if (id !== navId) return;
       if (!entry) {
         location.reload();
