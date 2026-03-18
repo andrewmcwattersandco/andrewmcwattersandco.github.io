@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  // Speculation rules path — Chrome handles prerendering natively
+  // Speculation rules
   if ("chrome" in window && HTMLScriptElement.supports?.("speculationrules")) {
     const script = document.createElement("script");
     script.type = "speculationrules";
