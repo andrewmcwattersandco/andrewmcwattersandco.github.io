@@ -221,6 +221,7 @@
         return;
       }
       currentUrl = url;
+      history.replaceState({ scrollY }, "", location.href);
       history.pushState({ scrollY: 0 }, "", url);
       swapPage(entry, 0);
     });
