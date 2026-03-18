@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  if (window._speculation) return;
+  window._speculation = true;
+
   // Speculation rules
   if ("chrome" in window && HTMLScriptElement.supports?.("speculationrules")) {
     const script = document.createElement("script");
