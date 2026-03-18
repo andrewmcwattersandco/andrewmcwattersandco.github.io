@@ -42,7 +42,7 @@
   const saveData = navigator.connection?.saveData ?? false;
 
   function parseCacheControl(header) {
-    if (!header) return 60;
+    if (!header) return 0;
     if (/no-store|no-cache/.test(header)) return 0;
     const maxAge = header.match(/max-age=(\d+)/);
     return maxAge ? parseInt(maxAge[1], 10) : 60;
