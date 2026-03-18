@@ -213,6 +213,7 @@
   document.addEventListener("mousedown", (e) => {
     const link = e.target.closest("a");
     if (!isEligible(link)) return;
+    if (link.href === currentFetchUrl) return;
     fetchPage(link.href);
   });
 
@@ -222,6 +223,7 @@
     (e) => {
       const link = e.target.closest("a");
       if (!isEligible(link)) return;
+      if (link.href === currentFetchUrl) return;
       fetchPage(link.href);
     },
     { passive: true },
