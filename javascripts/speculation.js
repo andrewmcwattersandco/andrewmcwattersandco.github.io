@@ -62,6 +62,7 @@
     try {
       response = await fetch(url, {
         credentials: "same-origin",
+        priority: "low",
         signal: preloadController.signal,
       });
     } catch {
@@ -141,7 +142,7 @@
     }
   }
 
-  async function swapPage(entry, scrollY) {
+  async function swapPage(entry, scrollY, id) {
     const doc = new DOMParser().parseFromString(entry.html, "text/html");
     const newStylesheets = patchHead(doc);
 
@@ -155,6 +156,7 @@
             }),
         ),
       );
+      if (id !== navId) return;
     }
 
     document.body.replaceWith(doc.body);
@@ -223,10 +225,10 @@
         location.href = url;
         return;
       }
-      history.replaceState({ scrollY }, "", location.href);
+      history.replaceState({ scrollY }, "", currentUrl);
       currentUrl = entry.url;
-      history.pushState({ scrollY: 0 }, "", entry.url);
-      swapPage(entry, 0);
+      history.pushState({ scrollY: 0 }, "", currentUrl);
+      swapPage(entry, 0, id);
     });
   });
 
@@ -250,7 +252,7 @@
         location.reload();
         return;
       }
-      swapPage(entry, e.state?.scrollY ?? 0);
+      swapPage(entry, e.state?.scrollY ?? 0, id);
     });
   });
 })();
