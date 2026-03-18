@@ -195,14 +195,19 @@
   }
 
   // Hover
-  document.addEventListener("mouseover", (e) => {
-    if (saveData) return;
-    const link = e.target.closest("a");
-    if (!isEligible(link)) return;
-    const cached = cache.get(link.href);
-    if (cached && Date.now() < cached.expires) return;
-    fetchPage(link.href);
-  });
+  document.addEventListener(
+    "pointerenter",
+    (e) => {
+      if (saveData) return;
+      const link = e.target.closest("a");
+      if (!isEligible(link)) return;
+      const cached = cache.get(link.href);
+      if (cached && Date.now() < cached.expires) return;
+      if (link.href === currentFetchUrl) return;
+      fetchPage(link.href);
+    },
+    true,
+  );
 
   // Mousedown
   document.addEventListener("mousedown", (e) => {
