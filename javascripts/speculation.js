@@ -136,8 +136,10 @@
   }
 
   async function swapPage(entry, scrollY) {
+    console.log("[speculation] swapPage", entry.url, scrollY);
     const doc = new DOMParser().parseFromString(entry.html, "text/html");
     const newStylesheets = patchHead(doc);
+    console.log("[speculation] new stylesheets", newStylesheets.length);
 
     if (newStylesheets.length) {
       await Promise.all(
@@ -151,11 +153,13 @@
       );
     }
 
+    console.log("[speculation] replacing body");
     document.body.replaceWith(doc.body);
     document.body.setAttribute("tabindex", "-1");
     document.body.focus();
     reexecuteScripts(document.body);
     scrollTo(0, scrollY ?? 0);
+    console.log("[speculation] swap complete");
   }
 
   function isEligible(el) {
