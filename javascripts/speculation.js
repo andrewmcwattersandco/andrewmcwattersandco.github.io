@@ -227,6 +227,11 @@
     });
   });
 
+  // Reset state on bfcache restore
+  addEventListener("pageshow", (e) => {
+    if (e.persisted) currentUrl = location.href;
+  });
+
   // Save scroll position before any navigation
   addEventListener("pagehide", () => {
     history.replaceState({ scrollY }, "", location.href);
