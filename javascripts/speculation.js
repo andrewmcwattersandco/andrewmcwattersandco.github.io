@@ -163,7 +163,7 @@
     document.body.setAttribute("tabindex", "-1");
     document.body.focus();
     reexecuteScripts(document.body);
-    scrollTo(0, scrollY ?? 0);
+    scrollTo({ top: scrollY ?? 0, behavior: "instant" });
   }
 
   function isEligible(el) {
