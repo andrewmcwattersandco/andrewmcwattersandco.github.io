@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  // Speculation rules
+  // Speculation rules path — Chrome handles prerendering natively
   if ("chrome" in window && HTMLScriptElement.supports?.("speculationrules")) {
     const script = document.createElement("script");
     script.type = "speculationrules";
@@ -74,10 +74,7 @@
     const html = await response.text();
 
     const entry = { html, url: response.url, expires: now + ttl * 1000 };
-    if (ttl > 0) {
-      cache.set(url, entry);
-      if (response.url !== url) cache.set(response.url, entry);
-    }
+    if (ttl > 0) cache.set(url, entry);
 
     return entry;
   }
@@ -222,23 +219,19 @@
       }
       // Save current scroll position before navigating away
       history.replaceState({ scrollY }, "", currentUrl);
-      currentUrl = entry.url;
-      history.pushState({ scrollY: 0 }, "", entry.url);
+      currentUrl = url;
+      history.pushState({ scrollY: 0 }, "", url);
       swapPage(entry, 0);
     });
   });
 
   // Popstate
   addEventListener("popstate", (e) => {
-    console.log("[speculation] popstate", location.href, "cache keys:", [
-      ...cache.keys(),
-    ]);
     // Save current scroll position before navigating away
     history.replaceState({ scrollY }, "", currentUrl);
     currentUrl = location.href;
     const id = ++navId;
     fetchPage(location.href).then((entry) => {
-      console.log("[speculation] popstate entry", entry);
       if (id !== navId) return;
       if (!entry) {
         location.reload();
