@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  // Speculation rules path — Chrome handles prerendering natively
-  if (HTMLScriptElement.supports?.("speculationrules")) {
+  // Speculation rules
+  if ("chrome" in window && HTMLScriptElement.supports?.("speculationrules")) {
     const script = document.createElement("script");
     script.type = "speculationrules";
     script.textContent = JSON.stringify({
@@ -185,37 +185,17 @@
   }
 
   function isEligible(el) {
-    if (!el || el.tagName !== "A") {
-      console.log("[speculation] not an anchor", el);
-      return false;
-    }
-    if (el.hasAttribute("data-no-speculate")) {
-      console.log("[speculation] data-no-speculate");
-      return false;
-    }
-    if (el.hasAttribute("download")) {
-      console.log("[speculation] download");
-      return false;
-    }
-    if (el.target) {
-      console.log("[speculation] target", el.target);
-      return false;
-    }
-    if (el.origin !== location.origin) {
-      console.log("[speculation] origin mismatch", el.origin, location.origin);
-      return false;
-    }
-    if (el.href === currentUrl) {
-      console.log("[speculation] same as current", el.href);
-      return false;
-    }
-    console.log("[speculation] eligible", el.href);
+    if (!el || el.tagName !== "A") return false;
+    if (el.hasAttribute("data-no-speculate")) return false;
+    if (el.hasAttribute("download")) return false;
+    if (el.target) return false;
+    if (el.origin !== location.origin) return false;
+    if (el.href === currentUrl) return false;
     return true;
   }
 
   // Hover
   document.addEventListener("mouseover", (e) => {
-    console.log("[speculation] mouseover", e.target);
     if (saveData) return;
     const link = e.target.closest("a");
     if (!isEligible(link)) return;
