@@ -51,14 +51,6 @@
   async function fetchPage(url) {
     const now = Date.now();
     const cached = cache.get(url);
-    console.log(
-      "[speculation] fetchPage",
-      url,
-      "cache hit:",
-      !!cached,
-      "keys:",
-      [...cache.keys()],
-    );
 
     if (cached && now < cached.expires) return cached;
 
@@ -85,10 +77,7 @@
     const html = await response.text();
 
     const entry = { html, url: response.url, expires: now + ttl * 1000 };
-    if (ttl > 0) {
-      cache.set(url, entry);
-      console.log("[speculation] cached", url, "html length:", html.length);
-    }
+    if (ttl > 0) cache.set(url, entry);
 
     return entry;
   }
@@ -150,10 +139,8 @@
   }
 
   async function swapPage(entry, scrollY) {
-    console.log("[speculation] swapPage", entry.url, scrollY);
     const doc = new DOMParser().parseFromString(entry.html, "text/html");
     const newStylesheets = patchHead(doc);
-    console.log("[speculation] new stylesheets", newStylesheets.length);
 
     if (newStylesheets.length) {
       await Promise.all(
@@ -167,13 +154,11 @@
       );
     }
 
-    console.log("[speculation] replacing body");
     document.body.replaceWith(doc.body);
     document.body.setAttribute("tabindex", "-1");
     document.body.focus();
     reexecuteScripts(document.body);
     scrollTo(0, scrollY ?? 0);
-    console.log("[speculation] swap complete");
   }
 
   function isEligible(el) {
@@ -235,28 +220,22 @@
         location.href = url;
         return;
       }
-      // Save current scroll position before navigating away
-      history.replaceState({ scrollY }, "", currentUrl);
       currentUrl = url;
       history.pushState({ scrollY: 0 }, "", url);
       swapPage(entry, 0);
     });
   });
 
+  // Save scroll position before any navigation
+  addEventListener("pagehide", () => {
+    history.replaceState({ scrollY }, "", location.href);
+  });
+
   // Popstate
   addEventListener("popstate", (e) => {
-    console.log("[speculation] popstate fired", location.href, e.state);
-    // Save current scroll position before navigating away
-    history.replaceState({ scrollY }, "", currentUrl);
     currentUrl = location.href;
     const id = ++navId;
     fetchPage(location.href).then((entry) => {
-      console.log(
-        "[speculation] popstate fetch result",
-        !!entry,
-        "id match",
-        id === navId,
-      );
       if (id !== navId) return;
       if (!entry) {
         location.reload();
