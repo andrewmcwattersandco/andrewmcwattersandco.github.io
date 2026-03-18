@@ -77,7 +77,10 @@
     const html = await response.text();
 
     const entry = { html, url: response.url, expires: now + ttl * 1000 };
-    if (ttl > 0) cache.set(url, entry);
+    if (ttl > 0) {
+      cache.set(url, entry);
+      console.log("[speculation] cached", url, "->", entry.url);
+    }
 
     return entry;
   }
