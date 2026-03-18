@@ -48,7 +48,7 @@
     return maxAge ? parseInt(maxAge[1], 10) : 60;
   }
 
-  async function fetchPage(url) {
+  async function fetchPage(url, priority = "low") {
     const now = Date.now();
     const cached = cache.get(url);
 
@@ -62,7 +62,7 @@
     try {
       response = await fetch(url, {
         credentials: "same-origin",
-        priority: "low",
+        priority,
         signal: preloadController.signal,
       });
     } catch {
@@ -219,7 +219,7 @@
     e.preventDefault();
     const url = link.href;
     const id = ++navId;
-    fetchPage(url).then((entry) => {
+    fetchPage(url, "auto").then((entry) => {
       if (id !== navId) return;
       if (!entry) {
         location.href = url;
